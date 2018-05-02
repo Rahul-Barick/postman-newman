@@ -11,8 +11,7 @@ Write API Tests with Postman and Newman
 
 ## Newman
 
-1. Using Newman, one can run and test a Postman Collections directly from the command-line.
-2. We Write Tests in Postman, then export the collection and use Newman to run them
+1. We Write Tests in Postman, then export the collection and use Newman to run them directly from the command-line.
 
 ## Install Newman
 
