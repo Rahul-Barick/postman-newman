@@ -1,0 +1,94 @@
+{
+	"info": {
+		"name": "Github Api",
+		"_postman_id": "761f07cf-a72d-6fcf-2b54-7c8d6aa45552",
+		"description": "This is a collection for the Github API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Github Root APi",
+			"description": "This folder contains github Api's",
+			"item": [
+				{
+					"name": "Github Root APi Request",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"const jsonData = JSON.parse(responseBody);",
+									"const usersURL = \"https://api.github.com/user\"",
+									"const emailsURL = \"https://api.github.com/user/emails\"",
+									"const followersURL = \"https://api.github.com/user/followers\"",
+									"const followingURL = \"https://api.github.com/user/following{/target}\"",
+									"",
+									"let {current_user_url, emails_url, followers_url, following_url} = jsonData",
+									"",
+									"// Tests go here",
+									"tests[\"Gets the correct users url\"] = current_user_url === usersURL;",
+									"tests[\"Gets the correct emails url\"] = emails_url === emailsURL;",
+									"tests[\"Gets the correct followers url\"] = followers_url === followersURL;",
+									"tests[\"Gets the correct following url\"] = following_url === followingURL;"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{base_url}}",
+							"host": [
+								"{{base_url}}"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Github User API Request",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"const jsonData = JSON.parse(responseBody);",
+									"",
+									"const { login } = jsonData;",
+									"",
+									"tests[\"Gets the correct username\"] = login === \"scotch-io\";",
+									"",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"tests[\"Content-Type is present\"] = postman.getResponseHeader(\"Content-Type\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{base_url}}/users/{{user_name}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"{{user_name}}"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
